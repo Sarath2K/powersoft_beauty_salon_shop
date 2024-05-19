@@ -19,6 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'customer_id',
         'name',
         'email',
         'password',
@@ -43,4 +44,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @param $year
+     * @return string
+     */
+    public static function getCustomerUniqueId($year)
+    {
+        return self::getUniqueId(CUSTOMER_UNIQUE_ID, CUSTOMER_UNIQUE_ID_LENGTH, $year);
+    }
+
+    /**
+     * @param $uniqueIdPattern
+     * @param $uniqueIdLength
+     * @param $year
+     * @return string
+     */
+    public static function getUniqueId($uniqueIdPattern, $uniqueIdLength, $year)
+    {
+        $uniqueIdPatternByYear = $uniqueIdPattern . $year;
+        $previousId = self::where('customer_id', 'LIKE', $uniqueIdPatternByYear . '%')->orderBy('customer_id', 'desc')->first()->customer_id ?? ($uniqueIdPatternByYear . str_pad(0, $uniqueIdLength, '0', STR_PAD_LEFT));
+        if (!$previousId) {
+            return $uniqueIdPatternByYear . str_pad(1, $uniqueIdPatternByYear, '0', STR_PAD_LEFT);
+        }
+        $previousIdNumber = (int)str_replace($uniqueIdPatternByYear, '', $previousId);
+        return $uniqueIdPatternByYear . str_pad($previousIdNumber + 1, $uniqueIdLength, '0', STR_PAD_LEFT);
+    }
 }

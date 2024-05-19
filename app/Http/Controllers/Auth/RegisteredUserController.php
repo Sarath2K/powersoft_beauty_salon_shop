@@ -32,15 +32,21 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $year = date("Y");
+        $customerId = User::getCustomerUniqueId($year);
+
         $user = User::create([
             'name' => $request->name,
+            'customer_id' => $customerId,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $user->assignRole(ROLE_CUSTOMER);
 
         event(new Registered($user));
 
