@@ -19,6 +19,7 @@ class ManagerSeeder extends Seeder
             'name' => 'Manager',
             'customer_id' => MANAGER_UNIQUE_ID . '/' . Carbon::now()->year . '/0001',
             'email' => 'manager@tech.com',
+            'phone' => '0123456789',
             'password' => Hash::make('password'),
             'created_at' => now(),
             'updated_at' => now()

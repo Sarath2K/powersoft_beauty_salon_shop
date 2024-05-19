@@ -19,6 +19,7 @@ class AdminSeeder extends Seeder
             'name' => 'Administrator',
             'customer_id' => ADMIN_UNIQUE_ID . '/' . Carbon::now()->year . '/0001',
             'email' => 'admin@tech.com',
+            'phone' => '1234567890',
             'password' => Hash::make('password'),
             'created_at' => now(),
             'updated_at' => now()
