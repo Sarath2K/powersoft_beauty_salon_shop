@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleTableSeeder::class,
             AdminSeeder::class,
-            ManagerSeeder::class
+            ManagerSeeder::class,
+            BeauticianSeeder::class
         ]);
     }
 }

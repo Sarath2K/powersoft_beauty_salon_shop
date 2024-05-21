@@ -37,6 +37,13 @@ class RoleTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+            [
+                'id' => 4,
+                'name' => ROLE_BEAUTICIAN,
+                'guard_name' => 'web',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ]);
     }
 }

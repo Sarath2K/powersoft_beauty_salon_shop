@@ -2,6 +2,7 @@
 define('ROLE_ADMIN', 'Admin');
 define('ROLE_MANAGER', 'Manager');
 define('ROLE_CUSTOMER', 'Customer');
+define('ROLE_BEAUTICIAN', 'Beautician');
 
 define('ADMIN_UNIQUE_ID', 'AMD');
 define('ADMIN_UNIQUE_ID_LENGTH', 4);
@@ -11,6 +12,9 @@ define('MANAGER_UNIQUE_ID_LENGTH', 4);
 
 define('CUSTOMER_UNIQUE_ID', 'CUST');
 define('CUSTOMER_UNIQUE_ID_LENGTH', 4);
+
+define('BEAUTICIAN_UNIQUE_ID', 'BTY');
+define('BEAUTICIAN_UNIQUE_ID_LENGTH', 4);
 
 define('BOOKING_UNIQUE_ID', 'PTS');
 define('BOOKING_UNIQUE_ID_LENGTH', 4);
