@@ -72,7 +72,7 @@
                                         </tr>
                                         <tr>
                                             <th>Beautician</th>
-                                            <th> -</th>
+                                            <th>{{ $booking->beautician ? $booking->beautician->name : 'Not Assigned' }}</th>
                                             <th>Amount</th>
                                             <td>
                                                 <div class="d-flex justify-content-around">
@@ -83,7 +83,7 @@
                                         </tr>
                                         <tr>
                                             <th>Beautician ID</th>
-                                            <td>-</td>
+                                            <td>{{ $booking->beautician ? $booking->beautician->customer_id : 'Not Assigned' }}</td>
                                             <th>Additional Charger</th>
                                             <td>
                                                 <div class="d-flex justify-content-around">

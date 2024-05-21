@@ -23,7 +23,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::with('user', 'payment')->orderBy('created_at', 'desc')->get();
+        $bookings = Booking::with('user', 'payment', 'beautician')->orderBy('created_at', 'desc')->get();
         return view('booking.index', compact('bookings'));
     }
 
@@ -139,7 +139,7 @@ class BookingController extends Controller
      */
     public function show(string $id)
     {
-        $booking = Booking::with('user', 'payment')->findOrFail($id);
+        $booking = Booking::with('user', 'payment', 'beautician')->findOrFail($id);
         return view('booking.show', compact('booking'));
     }
 
