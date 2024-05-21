@@ -106,7 +106,7 @@
                                                               method="POST">
                                                             @csrf
                                                             @method('PUT')
-                                                            @if(in_array($booking->status, [BOOKING_STATUS_PENDING]))
+                                                            @if(in_array($booking->status, [BOOKING_STATUS_PENDING]) && empty($booking->beautician_id))
                                                                 <button type="submit"
                                                                         class="btn btn-sm btn-gradient-danger">
                                                                     <i class="mdi mdi-close"></i>
