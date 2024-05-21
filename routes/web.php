@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,38 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::prefix('management')->middleware(['role:Admin|Manager'])->group(function () {
+        Route::prefix('booking')->group(function () {
+            Route::get('/', [BookingController::class, 'index'])->name('booking');
+            Route::put('/update-booking-completed/{id}', [BookingController::class, 'updateCompleted'])->name('booking.update.complete');
+            Route::put('/update-booking-rejected/{id}', [BookingController::class, 'updateRejected'])->name('booking.update.reject');
+        });
+
+        Route::prefix('customers')->group(function () {
+            Route::get('/', [BookingController::class, 'index'])->name('customer');
+        });
+
+        Route::prefix('slots')->group(function () {
+            Route::get('/', [BookingController::class, 'index'])->name('slot');
+        });
+    });
+
+    Route::prefix('customer')->middleware(['role:Customer'])->group(function () {
+        Route::prefix('booking')->group(function () {
+            Route::get('/slot-booking', [BookingController::class, 'create'])->name('booking.create');
+            Route::get('/booking-counts', [BookingController::class, 'bookingCount'])->name('booking.counts');
+            Route::post('/store-slot-booking', [BookingController::class, 'store'])->name('booking.store');
+            Route::get('/my-bookings', [BookingController::class, 'history'])->name('booking.history');
+            Route::put('/cancel-my-booking/{id}', [BookingController::class, 'cancelMyBooking'])->name('booking.cancel');
+        });
+    });
+
+    Route::middleware(['role:Admin|Manager|Customer'])->group(function () {
+        Route::prefix('booking')->group(function () {
+            Route::get('/booking/{id}', [BookingController::class, 'show'])->name('booking.show');
+        });
+    });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

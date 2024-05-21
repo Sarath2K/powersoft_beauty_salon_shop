@@ -20,7 +20,7 @@
                         <div class="input-group-prepend bg-transparent">
                             <i class="input-group-text border-0 mdi mdi-magnify"></i>
                         </div>
-                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+                        <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects"/>
                     </div>
                 </form>
             </div>
@@ -199,6 +199,8 @@
                         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                     </a>
                 </li>
+
+                @role('Admin|Manager')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard') }}">
                         <span class="menu-title">Dashboard</span>
@@ -207,48 +209,42 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#grounds" aria-expanded="false"
-                       aria-controls="ui-basic">
+                    <a class="nav-link" href="{{ route('slot') }}">
                         <span class="menu-title">Slots</span>
-                        <i class="menu-arrow"></i>
                         <i class="mdi mdi-calendar-clock menu-icon"></i>
                     </a>
-                    <div class="collapse" id="grounds">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="">Slots</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">Add Slots</a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ route('customer') }}">
                         <span class="menu-title">Customers</span>
                         <i class="mdi mdi-contacts menu-icon"></i>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <span class="menu-title">Bookings History</span>
-                        <i class="mdi mdi-chart-bar menu-icon"></i>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ route('booking') }}">
                         <span class="menu-title">Bookings</span>
                         <i class="mdi mdi-receipt menu-icon"></i>
                     </a>
                 </li>
+                @endrole
 
+                @role('Customer')
                 <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <span class="menu-title">Spot Booking</span>
+                    <a class="nav-link" href="{{ route('booking.create') }}">
+                        <span class="menu-title">Slot Booking</span>
                         <i class="mdi mdi-play menu-icon"></i>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('booking.history') }}">
+                        <span class="menu-title">Bookings History</span>
+                        <i class="mdi mdi-chart-bar menu-icon"></i>
+                    </a>
+                </li>
+                @endrole
             </ul>
         </nav>
 

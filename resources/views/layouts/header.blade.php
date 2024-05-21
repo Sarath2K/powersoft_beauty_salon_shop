@@ -3,6 +3,10 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Beauty Salon Management</title>
     <!-- plugins:css -->
@@ -27,6 +31,12 @@
 
     <!-- Include Select2 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+
+    <!-- Calender -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 @yield('master-content')
@@ -47,6 +57,9 @@
 <script src="{{asset('assets/js/dashboard.js')}}"></script>
 <script src="{{asset('assets/js/todolist.js')}}"></script>
 <!-- End custom js for this page -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 @stack('scripts')
 </body>
 </html>

@@ -289,7 +289,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>F
                 <div class="col-md-5 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
