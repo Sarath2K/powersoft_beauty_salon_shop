@@ -52,9 +52,31 @@
                                                 <td>{{ $booking->booking_date }}</td>
                                                 <td>{{ $booking->start_time }}</td>
                                                 <td>{{ $booking->end_time }}</td>
-                                                <td>{{ $booking->status }}</td>
+                                                <td>
+                                                    @if($booking->status == BOOKING_STATUS_PENDING)
+                                                        <label
+                                                            class="badge badge-gradient-warning w-100">{{ $booking->status }}</label>
+                                                    @elseif($booking->status == BOOKING_STATUS_CANCELLED)
+                                                        <label
+                                                            class="badge badge-gradient-danger w-100">{{ $booking->status }}</label>
+                                                    @elseif($booking->status == BOOKING_STATUS_REJECTED)
+                                                        <label
+                                                            class="badge badge-gradient-danger w-100">{{ $booking->status }}</label>
+                                                    @else
+                                                        <label
+                                                            class="badge badge-gradient-success w-100">{{ $booking->status }}</label>
+                                                    @endif
+                                                </td>
                                                 <td>{{ $booking->booking_type }}</td>
-                                                <td>{{ $booking->payment->status }}</td>
+                                                <td>
+                                                    @if($booking->payment->status == PAYMENT_STATUS_PENDING)
+                                                        <label
+                                                            class="badge badge-gradient-warning w-100">{{ $booking->payment->status }}</label>
+                                                    @else
+                                                        <label
+                                                            class="badge badge-gradient-success w-100">{{ $booking->payment->status }}</label>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <div class="d-flex justify-content-around">
                                                         <div><i class="mdi mdi-currency-inr"></i></div>
@@ -87,10 +109,18 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('PUT')
-                                                            <button type="submit"
-                                                                    class="btn btn-sm btn-gradient-success">
-                                                                <i class="mdi mdi-check"></i>
-                                                            </button>
+                                                            @if(in_array($booking->status, [BOOKING_STATUS_PENDING]))
+                                                                <button type="submit"
+                                                                        class="btn btn-sm btn-gradient-success">
+                                                                    <i class="mdi mdi-check"></i>
+                                                                </button>
+                                                            @else
+                                                                <button type="submit"
+                                                                        class="btn btn-sm btn-gradient-success"
+                                                                        disabled>
+                                                                    <i class="mdi mdi-check"></i>
+                                                                </button>
+                                                            @endif
                                                         </form>
                                                     </div>
 
@@ -100,10 +130,17 @@
                                                             method="POST">
                                                             @csrf
                                                             @method('PUT')
-                                                            <button type="submit"
-                                                                    class="btn btn-sm btn-gradient-danger">
-                                                                <i class="mdi mdi-close"></i>
-                                                            </button>
+                                                            @if(in_array($booking->status, [BOOKING_STATUS_PENDING]))
+                                                                <button type="submit"
+                                                                        class="btn btn-sm btn-gradient-danger">
+                                                                    <i class="mdi mdi-close"></i>
+                                                                </button>
+                                                            @else
+                                                                <button type="submit"
+                                                                        class="btn btn-sm btn-gradient-danger" disabled>
+                                                                    <i class="mdi mdi-close"></i>
+                                                                </button>
+                                                            @endif
                                                         </form>
                                                     </div>
                                                 </td>
