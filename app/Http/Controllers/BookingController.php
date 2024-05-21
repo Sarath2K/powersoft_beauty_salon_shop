@@ -123,9 +123,14 @@ class BookingController extends Controller
         }
     }
 
+    /**
+     * @param string $id
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
+     */
     public function show(string $id)
     {
-        return view('booking.show');
+        $booking = Booking::with('user', 'payment')->findOrFail($id);
+        return view('booking.show', compact('booking'));
     }
 
     /**
