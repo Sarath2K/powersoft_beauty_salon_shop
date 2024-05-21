@@ -216,13 +216,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('customer') }}">
-                        <span class="menu-title">Customers</span>
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('booking') }}">
                         <span class="menu-title">Bookings</span>
                         <i class="mdi mdi-receipt menu-icon"></i>
