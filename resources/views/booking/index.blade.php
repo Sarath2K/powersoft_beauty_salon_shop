@@ -106,18 +106,18 @@
                                                     </div>
 
                                                     <div>
-                                                        <form
-                                                            action="{{ route('booking.update.complete', $booking->id) }}"
-                                                            method="POST">
+                                                        <form id="complete-form"
+                                                              action="{{ route('booking.update.complete', $booking->id) }}"
+                                                              method="POST">
                                                             @csrf
                                                             @method('PUT')
                                                             @if(in_array($booking->status, [BOOKING_STATUS_PENDING]))
-                                                                <button type="submit"
+                                                                <button type="button" id="complete-button"
                                                                         class="btn btn-sm btn-gradient-success">
                                                                     <i class="mdi mdi-check"></i>
                                                                 </button>
                                                             @else
-                                                                <button type="submit"
+                                                                <button type="button"
                                                                         class="btn btn-sm btn-gradient-success"
                                                                         disabled>
                                                                     <i class="mdi mdi-check"></i>
@@ -127,18 +127,18 @@
                                                     </div>
 
                                                     <div>
-                                                        <form
-                                                            action="{{ route('booking.update.reject', $booking->id) }}"
-                                                            method="POST">
+                                                        <form id="reject-form"
+                                                              action="{{ route('booking.update.reject', $booking->id) }}"
+                                                              method="POST">
                                                             @csrf
                                                             @method('PUT')
                                                             @if(in_array($booking->status, [BOOKING_STATUS_PENDING]))
-                                                                <button type="submit"
+                                                                <button type="button" id="reject-button"
                                                                         class="btn btn-sm btn-gradient-danger">
                                                                     <i class="mdi mdi-close"></i>
                                                                 </button>
                                                             @else
-                                                                <button type="submit"
+                                                                <button type="button"
                                                                         class="btn btn-sm btn-gradient-danger" disabled>
                                                                     <i class="mdi mdi-close"></i>
                                                                 </button>
@@ -175,3 +175,39 @@
     </div>
     <!-- main-panel ends -->
 @endsection
+
+@push('scripts')
+    <script>
+        document.getElementById('complete-button').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, complete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('complete-form').submit();
+                }
+            });
+        });
+
+        document.getElementById('reject-button').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, reject it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('reject-form').submit();
+                }
+            });
+        });
+    </script>
+@endpush

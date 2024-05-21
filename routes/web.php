@@ -37,11 +37,6 @@ Route::middleware('auth')->group(function () {
             Route::put('/update-booking-completed/{id}', [BookingController::class, 'updateCompleted'])->name('booking.update.complete');
             Route::put('/update-booking-rejected/{id}', [BookingController::class, 'updateRejected'])->name('booking.update.reject');
         });
-
-        // Slots
-        Route::prefix('slots')->group(function () {
-            Route::get('/', [BookingController::class, 'index'])->name('slot');
-        });
     });
 
     // Customer

@@ -102,12 +102,13 @@
                                                     </div>
 
                                                     <div>
-                                                        <form action="{{ route('booking.cancel', $booking->id) }}"
+                                                        <form id="cancel-form"
+                                                              action="{{ route('booking.cancel', $booking->id) }}"
                                                               method="POST">
                                                             @csrf
                                                             @method('PUT')
                                                             @if(in_array($booking->status, [BOOKING_STATUS_PENDING]) && empty($booking->beautician_id))
-                                                                <button type="submit"
+                                                                <button type="button" id="cancel-button"
                                                                         class="btn btn-sm btn-gradient-danger">
                                                                     <i class="mdi mdi-close"></i>
                                                                 </button>
@@ -119,7 +120,6 @@
                                                             @endif
                                                         </form>
                                                     </div>
-
                                                 </td>
                                             </tr>
                                         @empty
@@ -150,3 +150,23 @@
     </div>
     <!-- main-panel ends -->
 @endsection
+
+@push('scripts')
+    <script>
+        document.getElementById('cancel-button').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, reject it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('cancel-form').submit();
+                }
+            });
+        });
+    </script>
+@endpush

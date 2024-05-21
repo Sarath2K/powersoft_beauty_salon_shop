@@ -209,13 +209,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('slot') }}">
-                        <span class="menu-title">Slots</span>
-                        <i class="mdi mdi-calendar-clock menu-icon"></i>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('booking') }}">
                         <span class="menu-title">Bookings</span>
                         <i class="mdi mdi-receipt menu-icon"></i>

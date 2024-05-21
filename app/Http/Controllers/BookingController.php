@@ -154,9 +154,14 @@ class BookingController extends Controller
         DB::beginTransaction();
         try {
             $booking = Booking::findOrFail($id);
+            $payment = Payment::findOrFail($booking->payment_id);
 
             $booking->update([
                 'status' => BOOKING_STATUS_COMPLETED
+            ]);
+
+            $payment->update([
+                'status' => PAYMENT_STATUS_COMPLETED
             ]);
 
             DB::commit();
