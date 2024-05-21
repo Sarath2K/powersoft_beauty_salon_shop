@@ -20,7 +20,7 @@ class BeauticianSeeder extends Seeder
 
         for ($i = 1; $i <= 5; $i++) {
             $user = User::create([
-                'name' => 'Administrator',
+                'name' => 'Beautician' . $i,
                 'customer_id' => BEAUTICIAN_UNIQUE_ID . '/' . Carbon::now()->year . '/' . str_pad($i, 4, '0', STR_PAD_LEFT),
                 'email' => 'beautician' . $i . '@tech.com',
                 'phone' => '123456789' . $i,
