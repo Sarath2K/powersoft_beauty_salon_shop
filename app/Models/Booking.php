@@ -26,7 +26,8 @@ class Booking extends Model
         'start_time',
         'end_time',
         'status',
-        'booking_type'
+        'booking_type',
+        'beautician_id'
     ];
 
     /**
