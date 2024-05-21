@@ -35,6 +35,7 @@
                                             <th>Start Time</th>
                                             <th>End Time</th>
                                             <th>Status</th>
+                                            <th>Beautician</th>
                                             <th>Booking Type</th>
                                             <th>Payment Status</th>
                                             <th>Amount</th>
@@ -67,6 +68,7 @@
                                                             class="badge badge-gradient-success w-100">{{ $booking->status }}</label>
                                                     @endif
                                                 </td>
+                                                <td>{{ $booking->beautician ? $booking->beautician->name : 'Not Assigned' }}</td>
                                                 <td>{{ $booking->booking_type }}</td>
                                                 <td>
                                                     @if($booking->payment->status == PAYMENT_STATUS_PENDING)

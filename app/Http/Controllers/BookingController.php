@@ -200,7 +200,7 @@ class BookingController extends Controller
      */
     public function history()
     {
-        $bookings = Booking::with('user', 'payment')
+        $bookings = Booking::with('user', 'payment', 'beautician')
             ->where('user_id', Auth::id())
             ->orderBy('created_at', 'desc')
             ->get();

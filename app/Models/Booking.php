@@ -71,4 +71,12 @@ class Booking extends Model
     {
         return $this->belongsTo(Payment::class);
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function beautician()
+    {
+        return $this->belongsTo(User::class, 'beautician_id');
+    }
 }

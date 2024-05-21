@@ -24,9 +24,6 @@ define('BOOKING_STATUS_CANCELLED', 'Cancelled');
 define('BOOKING_STATUS_REJECTED', 'Rejected');
 define('BOOKING_STATUS_COMPLETED', 'Completed');
 
-define('BOOKING_STATUS_ACCEPT', 'Accept');
-define('BOOKING_STATUS_BOOKED', 'Booked');
-
 define('PAYMENT_TYPE_CASH', 'Cash');
 define('PAYMENT_UPI', 'UPI');
 
