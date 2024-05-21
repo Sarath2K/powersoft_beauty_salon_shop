@@ -28,23 +28,30 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Admin & Manager
     Route::prefix('management')->middleware(['role:Admin|Manager'])->group(function () {
+
+        // Booking
         Route::prefix('booking')->group(function () {
             Route::get('/', [BookingController::class, 'index'])->name('booking');
             Route::put('/update-booking-completed/{id}', [BookingController::class, 'updateCompleted'])->name('booking.update.complete');
             Route::put('/update-booking-rejected/{id}', [BookingController::class, 'updateRejected'])->name('booking.update.reject');
         });
 
+        // Customers
         Route::prefix('customers')->group(function () {
             Route::get('/', [BookingController::class, 'index'])->name('customer');
         });
 
+        // Slots
         Route::prefix('slots')->group(function () {
             Route::get('/', [BookingController::class, 'index'])->name('slot');
         });
     });
 
+    // Customer
     Route::prefix('customer')->middleware(['role:Customer'])->group(function () {
+        // Booking
         Route::prefix('booking')->group(function () {
             Route::get('/slot-booking', [BookingController::class, 'create'])->name('booking.create');
             Route::get('/booking-counts', [BookingController::class, 'bookingCount'])->name('booking.counts');
@@ -54,6 +61,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    // Admin, Manager & Customer
     Route::middleware(['role:Admin|Manager|Customer'])->group(function () {
         Route::prefix('booking')->group(function () {
             Route::get('/booking/{id}', [BookingController::class, 'show'])->name('booking.show');

@@ -105,10 +105,8 @@
                         cancelButtonText: 'No, cancel'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            // Retrieve CSRF token from meta tag
                             var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-                            // Send AJAX request to book the slot
                             $.ajax({
                                 url: '{{ route('booking.store') }}',
                                 method: 'POST',
@@ -128,7 +126,7 @@
                                             'Your slot has been booked.',
                                             'success'
                                         ).then(() => {
-                                            // Redirect to the booking page
+                                            // Redirect to the booking history page
                                             window.location.href = data.redirectUrl;
                                         });
                                     } else {
@@ -166,14 +164,16 @@
             var startHour = 9; // 9:00 AM
             var endHour = 19; // 7:00 PM
             var today = new Date();
-            today.setHours(0, 0, 0, 0); // Set time to midnight for comparison
+            today.setHours(0, 0, 0, 0);
             var now = new Date();
 
-            for (var day = 0; day < 7; day++) { // Loop through each day of the week
+            // Loop through each day of the week
+            for (var day = 0; day < 7; day++) {
                 var currentDay = new Date(today);
                 currentDay.setDate(today.getDate() + day);
 
-                if (currentDay.getDay() === 5) continue; // Skip Fridays
+                // Skip Fridays
+                if (currentDay.getDay() === 5) continue;
 
                 for (var hour = startHour; hour < endHour; hour++) {
                     var startTime = new Date(today);

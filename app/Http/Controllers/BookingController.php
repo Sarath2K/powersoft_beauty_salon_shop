@@ -17,6 +17,8 @@ class BookingController extends Controller
 {
 
     /**
+     * Get All Bookings.
+     *
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function index()
@@ -26,6 +28,8 @@ class BookingController extends Controller
     }
 
     /**
+     * Redirect To Slot Book Page.
+     *
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function create()
@@ -34,6 +38,8 @@ class BookingController extends Controller
     }
 
     /**
+     * Retrieve Booking Count In Pending Status.
+     *
      * @return JsonResponse
      */
     public function bookingCount()
@@ -56,6 +62,8 @@ class BookingController extends Controller
     }
 
     /**
+     * Book The Required Slot By The Customer.
+     *
      * @param Request $request
      * @return JsonResponse|RedirectResponse
      */
@@ -124,6 +132,8 @@ class BookingController extends Controller
     }
 
     /**
+     * Retrieve The Booking Date.
+     *
      * @param string $id
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
@@ -134,6 +144,8 @@ class BookingController extends Controller
     }
 
     /**
+     * Update The Status To Complete.
+     *
      * @param string $id
      * @return RedirectResponse
      */
@@ -157,6 +169,8 @@ class BookingController extends Controller
     }
 
     /**
+     * Update the Status To Rejected
+     *
      * @param string $id
      * @return RedirectResponse
      */
@@ -180,6 +194,8 @@ class BookingController extends Controller
     }
 
     /**
+     * Retrieve the Customer Booking History.
+     *
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function history()
@@ -193,6 +209,8 @@ class BookingController extends Controller
     }
 
     /**
+     * Update the Status To Cancel.
+     *
      * @param string $id
      * @return RedirectResponse
      */
